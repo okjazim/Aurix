@@ -1,0 +1,36 @@
+name: "Build iOS IPA"
+
+on:
+  workflow_dispatch: # Allows you to run this manually from the GitHub UI
+
+jobs:
+  build:
+    name: Create iOS IPA
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS
+        run: |
+          # This builds the iOS folder files
+          flutter build ios --release --no-codesign
+          
+          # This manually packages it into an IPA so you can download it
+          mkdir -p Payload
+          cp -r build/ios/iphoneos/Runner.app Payload
+          zip -r Aurix_Build.ipa Payload
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: Aurix_Build.ipa
