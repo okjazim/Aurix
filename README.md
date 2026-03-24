@@ -58,12 +58,16 @@ Aurix is a high-performance digital gold savings application built with Flutter.
 ## Screenshots
 - Dashboard Screen
 <img src="/lib/assets/dashboard.jpg" width="300">
+
 - Login Screen
 <img src="/lib/assets/login.jpg" width="300">
+
 - Transaction History
 <img src="/lib/assets/history.jpg" width="300">
+
 - Buying Screen
 <img src="/lib/assets/buy.jpg" width="300">
+
 ---
 
 ## File Structure
